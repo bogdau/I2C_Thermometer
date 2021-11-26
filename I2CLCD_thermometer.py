@@ -1,21 +1,17 @@
-########################################################################
-# Filename    : I2C_Thermometer.py
-# Description : Use the LCD display data and themperature
-########################################################################
-from PCF8574 import PCF8574_GPIO
-from Adafruit_LCD1602 import Adafruit_CharLCD
+from library.PCF8574 import PCF8574_GPIO
+from library.Adafruit_LCD1602 import Adafruit_CharLCD
 
 import RPi.GPIO as GPIO
 import math
 
-from ADCDevice import *
+from library.ADCDevice import *
 from time import sleep, strftime
 from datetime import datetime
 
 adc = ADCDevice() # Define an ADCDevice class object
 
 def setup():
-    global adc
+    global adc  
     if(adc.detectI2C(0x48)): # Detect the pcf8591.
         adc = PCF8591()
     elif(adc.detectI2C(0x4b)): # Detect the ads7830
